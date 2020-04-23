@@ -7,6 +7,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ClientService } from './services/client.service';
 
 @NgModule({
   declarations: [AppComponent, routingComponents],
@@ -18,7 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireAuthModule,
     AngularFireAnalyticsModule,
   ],
-  providers: [],
+  providers: [ClientService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
