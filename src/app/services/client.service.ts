@@ -38,4 +38,19 @@ export class ClientService {
   addClient(client: IClient) {
     this.clientsCollection.add(client);
   }
+  getClient(id: string): Observable<IClient> {
+    this.clientDoc = this._afs.doc<IClient>(`clients/${id}`);
+    this.client = this.clientDoc.snapshotChanges().pipe(
+      map((action) => {
+        if (action.payload.exists === false) {
+          return null;
+        } else {
+          const data = action.payload.data() as IClient;
+          data.id = action.payload.id;
+          return data;
+        }
+      })
+    );
+    return this.client;
+  }
 }
