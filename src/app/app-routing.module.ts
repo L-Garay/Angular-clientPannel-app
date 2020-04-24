@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
+import { AuthGaurd } from './gaurds/auth.gaurd';
 
 export const routingComponents = [
   NavbarComponent,
@@ -27,18 +28,31 @@ export const routingComponents = [
 ];
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: DashboardComponent, canActivate: [AuthGaurd] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'client/add', component: ClientFormComponent },
-  { path: 'client/edit/:id', component: EditClientComponent },
-  { path: 'client/:id', component: ClientDetailsComponent },
-  { path: 'settings', component: SettingsComponent },
+  {
+    path: 'client/add',
+    component: ClientFormComponent,
+    canActivate: [AuthGaurd],
+  },
+  {
+    path: 'client/edit/:id',
+    component: EditClientComponent,
+    canActivate: [AuthGaurd],
+  },
+  {
+    path: 'client/:id',
+    component: ClientDetailsComponent,
+    canActivate: [AuthGaurd],
+  },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGaurd] },
   { path: '**', component: RouteNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [AuthGaurd],
 })
 export class AppRoutingModule {}
