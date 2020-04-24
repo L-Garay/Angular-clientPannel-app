@@ -9,6 +9,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ClientService } from './services/client.service';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [AppComponent, routingComponents],
@@ -19,6 +20,7 @@ import { ClientService } from './services/client.service';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireAnalyticsModule,
+    FlashMessagesModule.forRoot(),
     FormsModule,
   ],
   providers: [ClientService],

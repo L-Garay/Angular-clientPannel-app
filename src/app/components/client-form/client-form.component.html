@@ -42,7 +42,7 @@
             type="text"
             class="form-control"
             id="lastName"
-            name="firstName"
+            name="lastName"
             #clientLastName="ngModel"
             [(ngModel)]="client.lastName"
             minlength="2"
@@ -83,14 +83,11 @@
           />
           <div
             class="invalid-feedback"
-            [hidden]="!clientLastName.errors?.required"
+            [hidden]="!clientEmail.errors?.required"
           >
             Email is required
           </div>
-          <div
-            class="invalid-feedback"
-            [hidden]="!clientLastName.errors?.pattern"
-          >
+          <div class="invalid-feedback" [hidden]="!clientEmail.errors?.pattern">
             Email is not valid
           </div>
         </div>
@@ -111,13 +108,13 @@
           />
           <div
             class="invalid-feedback"
-            [hidden]="!clientLastName.errors?.required"
+            [hidden]="!clientPhone.errors?.required"
           >
             Phone Number is required
           </div>
           <div
             class="invalid-feedback"
-            [hidden]="!clientLastName.errors?.minlength"
+            [hidden]="!clientPhone.errors?.minlength"
           >
             Phone Number must be at least seven characters
           </div>
