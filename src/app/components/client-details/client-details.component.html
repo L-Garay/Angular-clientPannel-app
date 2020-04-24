@@ -20,11 +20,39 @@
   <h3 class="card-header">{{ client.firstName }} {{ client.lastName }}</h3>
   <div class="card-body">
     <div class="row">
-      <div class="col-md-8 col-sm-6">
+      <div class="col-md-12 col-sm-6">
         <h4>Client Id: {{ client.id }}</h4>
       </div>
-      <div class="col-md-8 col-sm-6">
-        <p>BALANCE WILL GO HERE</p>
+      <div class="col-md-12 col-sm-6">
+        <h3 class="d-flex justify-content-end">
+          Balance
+          <span
+            [class.text-danger]="hasBalance"
+            [class.text-success]="!hasBalance"
+          >
+            {{ client.balance | currency: "USD":"symbol" }}</span
+          >
+          <small>
+            <a (click)="showBalanceUpdate = !showBalanceUpdate">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+          </small>
+        </h3>
+        <div class="d-flex justify-content-end">
+          <form *ngIf="showBalanceUpdate" (submit)="updateBalance()">
+            <div class="form-row">
+              <div class="col d-flex">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="balance"
+                  [(ngModel)]="client.balance"
+                />
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <hr />
