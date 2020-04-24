@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 import { AuthGaurd } from './gaurds/auth.gaurd';
+import { RegisterGaurd } from './gaurds/register.gaurd';
 
 export const routingComponents = [
   NavbarComponent,
@@ -30,7 +31,11 @@ export const routingComponents = [
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGaurd] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [RegisterGaurd],
+  },
   {
     path: 'client/add',
     component: ClientFormComponent,
@@ -53,6 +58,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGaurd],
+  providers: [AuthGaurd, RegisterGaurd],
 })
 export class AppRoutingModule {}
